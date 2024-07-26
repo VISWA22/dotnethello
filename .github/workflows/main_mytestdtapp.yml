@@ -34,8 +34,7 @@ jobs:
         run: |
             dotnet build --configuration Release
             mkdir -p ${{env.GITHUB_WORKSPACE}}\myapp\folder1\subfolder
-            dotnet publish -c Release -o "${{env.GITHUB_WORKSPACE}}\my-app2"
-            mv ${{env.GITHUB_WORKSPACE}}\my-app2\* ${{env.GITHUB_WORKSPACE}}\myapp\folder1\subfolder
+            dotnet publish -c Release -o "${{env.GITHUB_WORKSPACE}}\\myapp\folder1\subfolder
 
 
       - name: Upload artifact for deployment job
