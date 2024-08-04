@@ -23,29 +23,16 @@ steps:
     includePreviewVersions: true
 
 - task: DotNetCoreCLI@2
-  displayName: 'Build and publish hello-world-master'
+  inputs:
+    command: 'build'
+    projects: './hello-world-master'
+    arguments: 'configuration Release'
+- task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     publishWebProjects: false
-    projects: './hello-world-master/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/myapp'
+    projects: './hello-world-master'
+    arguments: 'configuration Release'
+    zipAfterPublish: false
+    modifyOutputPath: false
 
-- task: DotNetCoreCLI@2
-  displayName: 'Build hello-world-master2'
-  inputs:
-    command: 'build'
-    projects: './hello-world-master2/*.csproj'
-    arguments: '--configuration $(buildConfiguration)'
-
-- task: PowerShell@2
-  displayName: 'Create subfolder and publish hello-world-master2'
-  inputs:
-    targetType: 'inline'
-    script: |
-      New-Item -Path "$(Build.ArtifactStagingDirectory)/myapp/folder1/subfolder" -ItemType Directory -Force
-      dotnet publish ./hello-world-master2/*.csproj -c $(buildConfiguration) -o "$(Build.ArtifactStagingDirectory)/myapp/folder1/subfolder"
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathToPublish: '$(Build.ArtifactStagingDirectory)/myapp'
-    artifactName: '.net-app'
