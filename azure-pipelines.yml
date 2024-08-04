@@ -22,7 +22,6 @@ steps:
   inputs:
     command: 'build'
     projects: 'hello-world-master'
-    arguments: 'configuration Release'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
