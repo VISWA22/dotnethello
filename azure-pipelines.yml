@@ -50,7 +50,16 @@ steps:
     zipAfterPublish: false
     modifyOutputPath: false
 
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)\myapp'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+
 - task: PublishBuildArtifacts@1
   inputs:
-    pathToPublish: '$(Build.ArtifactStagingDirectory)\myapp'
+    pathToPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     artifactName: '.net-app'
+
