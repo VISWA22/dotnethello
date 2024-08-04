@@ -33,5 +33,5 @@ steps:
     projects: 'hello-world-master'
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: false
-    modifyOutputPath: false
+    modifyOutputPath: true
 
