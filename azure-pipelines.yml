@@ -31,7 +31,21 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: 'hello-world-master'
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/mya'
-    zipAfterPublish: true
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)\myapp'
+    zipAfterPublish: false
     modifyOutputPath: false
 
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build folder2'
+  inputs:
+    command: 'build'
+    projects: 'hello-world-master2'
+    arguments: '--configuration $(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: 'hello-world-master2'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)\myapp\folder1\folder2'
+    zipAfterPublish: false
+    modifyOutputPath: false
