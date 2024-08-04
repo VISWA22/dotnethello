@@ -11,16 +11,12 @@ pool:
   demands:
     - Agent.Name -equals pc
 
-variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
 
 steps:
 - task: UseDotNet@2
   inputs:
+    packageType: 'sdk'
     version: '6.0.x'
-    includePreviewVersions: true
 
 - task: DotNetCoreCLI@2
   inputs:
