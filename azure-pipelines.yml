@@ -21,13 +21,13 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: './hello-world-master'
+    projects: 'hello-world-master'
     arguments: 'configuration Release'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     publishWebProjects: false
-    projects: './hello-world-master'
+    projects: 'hello-world-master'
     arguments: 'configuration Release'
     zipAfterPublish: false
     modifyOutputPath: false
