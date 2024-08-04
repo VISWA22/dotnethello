@@ -11,6 +11,8 @@ pool:
   demands:
     - Agent.Name -equals pc
 
+variables:
+  buildConfiguration: 'Release'
 
 steps:
 - task: UseDotNet@2
@@ -19,15 +21,17 @@ steps:
     version: '6.0.x'
 
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet build folder1'
   inputs:
     command: 'build'
     projects: 'hello-world-master'
+    arguments: '--configuration $(buildConfiguration)'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     publishWebProjects: false
     projects: 'hello-world-master'
-    arguments: 'configuration Release'
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: false
     modifyOutputPath: false
 
