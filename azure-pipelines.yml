@@ -25,13 +25,13 @@ steps:
   inputs:
     command: 'build'
     projects: 'hello-world-master'
-    arguments: '--configuration $(buildConfiguration)'
+    arguments: '--configuration "Release"'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     publishWebProjects: false
     projects: 'hello-world-master'
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)\myapp'
+    arguments: '--configuration "Release" --output $(Build.ArtifactStagingDirectory)\myapp'
     zipAfterPublish: false
     modifyOutputPath: false
 
@@ -40,12 +40,17 @@ steps:
   inputs:
     command: 'build'
     projects: 'hello-world-master2'
-    arguments: '--configuration $(buildConfiguration)'
+    arguments: '--configuration "Release"'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     publishWebProjects: false
     projects: 'hello-world-master2'
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)\myapp\folder1\folder2'
+    arguments: '--configuration "Release" --output $(Build.ArtifactStagingDirectory)\myapp\folder1\folder2'
     zipAfterPublish: false
     modifyOutputPath: false
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)\myapp'
+    artifactName: '.net-app'
