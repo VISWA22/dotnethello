@@ -39,8 +39,8 @@
   -->
 
   <!-- create a single binary file that contains all we need to run the app -->
-  <PropertyGroup>
-    <PublishSingleFile>true</PublishSingleFile>
-  </PropertyGroup>
+ <!-- <PropertyGroup>-->
+   <!-- <PublishSingleFile>true</PublishSingleFile>-->
+ <!-- </PropertyGroup>-->
 
 </Project>
