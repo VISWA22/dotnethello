@@ -13,7 +13,7 @@ namespace MyApp
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         static void Main(string[] args)
         {
-            Logger.Info("Starting program .....");
+            Logger.Info("Starting program ......");
             string LOGDIR = Environment.GetEnvironmentVariable("LOGDIR");
             Logger.Debug("LOGDIR is set to {0}", LOGDIR);
 
