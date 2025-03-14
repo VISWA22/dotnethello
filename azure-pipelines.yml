@@ -8,9 +8,16 @@ trigger: none
 pool:
   name: 'Local-PC'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+jobs:
+- job:
+  displayName: 1
+  steps:
+  - script: echo Hello, world!
+    displayName: 'Run a one-line script'
 
-- script: echo Return of the Hello!!
-  displayName: 'Echo string'
+- job:
+  displayName: 2
+  steps:
+  - script: echo Return of the Hello!!
+    displayName: 'Echo string'
+
